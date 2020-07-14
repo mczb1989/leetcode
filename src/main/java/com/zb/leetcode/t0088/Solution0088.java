@@ -21,4 +21,27 @@ package com.zb.leetcode.t0088;
  *
  */
 public class Solution0088 {
+
+     // nums1 = [1,2,6,7,8,0,0,0,0,0], m = 5
+     // nums2 = [2,5,6],       n = 3
+    //1,2,6,7,8,2,5,6
+    //12267856
+
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+        for (int i = 0, j = m; i < n; i++) {
+            nums1[j++] = nums2[i];
+        }
+        int s = 0;
+        int tmp;
+        for (int e = m; e < m + n; e++) {
+            while (s < e && nums1[s] <= nums1[e] ) {
+                s++;
+            }
+            tmp = nums1[e];
+            for (int k = e; k > s ; k--) {
+                nums1[k] = nums1[k - 1];
+            }
+            nums1[s++] = tmp;
+        }
+    }
 }
